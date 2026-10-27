@@ -1,0 +1,9 @@
+{ "files": [
+  {"name": "lua_lvm", "path": "lua/lvm.c", "bytes": 60893, "tokens": 10600, "coverage": 0.4719},
+  {"name": "lua_lparser", "path": "lua/lparser.c", "bytes": 58315, "tokens": 10663, "coverage": 0.4267},
+  {"name": "redis_t_list", "path": "redis/src/t_list.c", "bytes": 49929, "tokens": 7599, "coverage": 0.4773},
+  {"name": "redis_dict", "path": "redis/src/dict.c", "bytes": 77090, "tokens": 10228, "coverage": 0.4706},
+  {"name": "nginx_http_parse", "path": "nginx/src/http/ngx_http_parse.c", "bytes": 62546, "tokens": 9211, "coverage": 0.5744},
+  {"name": "sqlite_btree", "path": "sqlite/src/btree.c", "bytes": 412413, "tokens": 51541, "coverage": 0.3966},
+  {"name": "adv_renamed_lvm", "path": "adversarial/renamed/lua__lvm.c", "bytes": 75181, "tokens": 10600, "coverage": 0.4547}
+] }

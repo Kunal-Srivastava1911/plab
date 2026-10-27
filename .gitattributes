@@ -1,0 +1,3 @@
+# keep files byte-identical on every platform (offsets in traces and tests depend on it)
+* text=auto eol=lf
+*.plabt binary

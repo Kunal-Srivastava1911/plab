@@ -1,0 +1,16 @@
+# cloned corpora (~1.5 GB, re-fetch with python corpus/fetch.py)
+corpus/src/
+
+# build outputs
+core/build/
+web/node_modules/
+web/dist/
+build_lists/
+
+# logs and caches
+*.log
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+.DS_Store

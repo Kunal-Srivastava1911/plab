@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f7f8fa;
+  --panel: #ffffff;
+  --panel-2: #f1f3f6;
+  --border: #e2e5ea;
+  --text: #16191f;
+  --muted: #5d6573;
+  --grid: #e6e9ee;
+  /* fixed outcome meaning (spec 10) */
+  --c-commit: #1f9d55;
+  --c-partial: #0f9c9c;
+  --c-miss: #d98a04;
+  --c-fallback: #9aa1ac;
+  --c-accent: #2563eb;
+  --c-bad: #dc2626;
+  --c-commit-bg: rgba(31, 157, 85, 0.16);
+  --c-partial-bg: rgba(15, 156, 156, 0.16);
+  --c-miss-bg: rgba(217, 138, 4, 0.22);
+  --c-fallback-bg: transparent;
+  /* phrase band colors by predictor source */
+  --c-src-copy: #2563eb;
+  --c-src-o2: #7c3aed;
+  --c-src-o1: #c026d3;
+  color-scheme: light;
+}
+
+:root.dark {
+  --bg: #0f1216;
+  --panel: #171b21;
+  --panel-2: #1e232b;
+  --border: #2a313b;
+  --text: #e7eaef;
+  --muted: #9aa3b2;
+  --grid: #262c35;
+  --c-commit: #34c27a;
+  --c-partial: #2cc4c4;
+  --c-miss: #f0a524;
+  --c-fallback: #6b7380;
+  --c-accent: #5b8dff;
+  --c-bad: #f05252;
+  --c-commit-bg: rgba(52, 194, 122, 0.2);
+  --c-partial-bg: rgba(44, 196, 196, 0.2);
+  --c-miss-bg: rgba(240, 165, 36, 0.26);
+  --c-src-copy: #5b8dff;
+  --c-src-o2: #a78bfa;
+  --c-src-o1: #e879f9;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+  font-feature-settings: "tnum" 1;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.recharts-cartesian-axis-tick-value,
+.recharts-legend-item-text {
+  fill: var(--muted);
+  font-size: 12px;
+}
+
+.recharts-default-tooltip {
+  background: var(--panel) !important;
+  border-color: var(--border) !important;
+  border-radius: 8px;
+  color: var(--text);
+}

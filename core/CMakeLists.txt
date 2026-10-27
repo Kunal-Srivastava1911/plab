@@ -1,0 +1,40 @@
+cmake_minimum_required(VERSION 3.16)
+project(plab C)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
+
+option(PLAB_NATIVE "Compile for the host CPU (AVX2 compare when available)" ON)
+set(CMAKE_C_FLAGS_RELEASE "-O2")
+add_compile_options(-Wall -Wextra -Wno-unused-parameter)
+if(PLAB_NATIVE)
+  add_compile_options(-march=native)
+endif()
+
+add_library(plab STATIC src/lex.c src/intern.c src/engine.c src/table.c)
+target_include_directories(plab PUBLIC include)
+
+foreach(tool plab_build_table plab_difftest plab_bench plab_trace)
+  add_executable(${tool} tools/${tool}.c)
+  target_link_libraries(${tool} plab)
+endforeach()
+
+add_executable(test_lex tests/test_lex.c)
+target_link_libraries(test_lex plab)
+
+enable_testing()
+add_test(NAME lexer_unit COMMAND test_lex)
+# Replay every saved fuzz failure (spec 8.5) through all configurations.
+file(GLOB PLAB_REGRESSIONS ${CMAKE_CURRENT_SOURCE_DIR}/tests/regressions/*.c)
+set(PLAB_TABLE ${CMAKE_CURRENT_SOURCE_DIR}/../tables/c.plabt)
+set(PLAB_KTABLE ${CMAKE_CURRENT_SOURCE_DIR}/../tables/c_kind.plabt)
+if(PLAB_REGRESSIONS)
+  if(EXISTS ${PLAB_TABLE} AND EXISTS ${PLAB_KTABLE})
+    add_test(NAME regressions COMMAND plab_difftest --quiet --table ${PLAB_TABLE} --kind-table ${PLAB_KTABLE} ${PLAB_REGRESSIONS})
+  else()
+    add_test(NAME regressions COMMAND plab_difftest --quiet ${PLAB_REGRESSIONS})
+  endif()
+endif()
